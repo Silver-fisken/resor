@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MRS Golf Skottland 2027</title>
+<meta name="description" content="Resplan för MRS Golf i Ayrshire 19–23 maj 2027: flyg, boende, banor och kostnad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f3ec;
+  --surface: #ffffff;
+  --ink: #1d2420;
+  --muted: #5d665f;
+  --line: #ddd6c8;
+  --accent: #1f5c43;
+  --accent-soft: #e3eee7;
+  --warn: #8a5a12;
+  --warn-soft: #f6ead3;
+  --hero-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121614;
+    --surface: #1a201d;
+    --ink: #e8ece9;
+    --muted: #9aa59e;
+    --line: #2c3530;
+    --accent: #7fc4a2;
+    --accent-soft: #1f2d26;
+    --warn: #e2b768;
+    --warn-soft: #2d2618;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121614; --surface: #1a201d; --ink: #e8ece9; --muted: #9aa59e;
+  --line: #2c3530; --accent: #7fc4a2; --accent-soft: #1f2d26; --warn: #e2b768; --warn-soft: #2d2618;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.15; margin: 0; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+
+.hero {
+  position: relative; color: var(--hero-ink);
+  background: #1d2a24 url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/View_from_edge_of_Royal_Troon_golf_course.jpg/1280px-View_from_edge_of_Royal_Troon_golf_course.jpg") center/cover;
+}
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,20,15,.35), rgba(10,20,15,.8)); }
+.hero .wrap { position: relative; padding-top: 88px; padding-bottom: 48px; }
+.kicker { text-transform: uppercase; letter-spacing: .14em; font-size: 13px; font-weight: 600; opacity: .9; }
+.hero h1 { font-size: clamp(36px, 7vw, 60px); margin: 8px 0 12px; }
+.hero p { margin: 0; max-width: 620px; font-size: 18px; opacity: .95; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.facts span { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); padding: 4px 12px; border-radius: 999px; font-size: 14px; }
+
+.status {
+  margin: 24px 0 0; padding: 14px 16px; border-radius: 10px;
+  background: var(--warn-soft); color: var(--ink); border-left: 4px solid var(--warn); font-size: 15px;
+}
+section { padding: 40px 0 8px; }
+section > h2 { font-size: 30px; margin-bottom: 6px; }
+.lede { color: var(--muted); margin: 0 0 20px; }
+
+.day { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); }
+.day:first-of-type { border-top: 0; }
+.day .date { font-family: Fraunces, Georgia, serif; }
+.day .date b { display: block; font-size: 26px; color: var(--accent); }
+.day .date small { color: var(--muted); font-family: Inter, sans-serif; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+.day h3 { font-size: 20px; margin-bottom: 6px; }
+.day ul { margin: 0; padding-left: 18px; }
+.day li { margin: 2px 0; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: middle; }
+.tag.opt { background: var(--warn-soft); color: var(--warn); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.card figure { margin: 0; position: relative; }
+.card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--line); }
+.card figcaption { font-size: 11px; color: var(--muted); padding: 4px 12px 0; }
+.card figcaption a { color: inherit; }
+.card .body { padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card h3 { font-size: 20px; }
+.card .when { font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.card p { margin: 0; font-size: 15px; }
+.card dl { margin: auto 0 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: 14px; padding-top: 8px; border-top: 1px solid var(--line); }
+.card dt { color: var(--muted); }
+.card dd { margin: 0; }
+.card.pick { border: 2px solid var(--accent); }
+.pickflag { position: absolute; top: 10px; left: 10px; background: var(--accent); color: var(--surface); font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.sum td { font-weight: 600; background: var(--accent-soft); }
+.note { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+
+.flights { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.flight { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.flight h3 { font-size: 18px; margin-bottom: 8px; }
+.flight ul { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+.flight li { padding: 6px 0; border-top: 1px solid var(--line); }
+.flight li:first-child { border-top: 0; }
+.flight .t { font-variant-numeric: tabular-nums; font-weight: 600; }
+.flight .c { color: var(--muted); font-size: 13px; }
+
+footer { margin: 48px 0 0; padding: 24px 0 48px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+footer p { margin: 0 0 8px; }
+
+@media (max-width: 560px) {
+  .day { grid-template-columns: 1fr; gap: 4px; }
+  .day .date b { display: inline; margin-right: 8px; }
+  .hero .wrap { padding-top: 64px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">MRS Golf · Resplan</div>
+    <h1>Skottland 2027</h1>
+    <p>Fyra dagar på Ayrshirekusten med bas i Troon: Royal Troon, Prestwick St Nicholas, Irvine och West Kilbride.</p>
+    <div class="facts">
+      <span>19–23 maj 2027</span>
+      <span>6 spelare</span>
+      <span>4 nätter i Troon</span>
+      <span>4 ronder + 1 valfri</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="status">
+    <strong>Förslag, inget är bokat.</strong> Det här är Dolores förslag så som det ser ut 1 november 2026. Royal Troon och Prestwick St Nicholas har bekräftat lediga tider och priser för 2027. Övriga priser är från klubbarnas och hotellens sidor eller jämförelsesajter och anges med årtal. Arrandagen är struken efter omröstningen.
+  </div>
+
+  <section id="dag-for-dag">
+    <h2>Dag för dag</h2>
+    <p class="lede">Ankomst onsdag, eftersom Royal Troon bara tar emot gäster 09:00–10:30 på torsdagen.</p>
+
+    <div class="day">
+      <div class="date"><b>19</b><small>Onsdag</small></div>
+      <div>
+        <h3>Ankomst och kvällen före golfen</h3>
+        <ul>
+          <li>Flyg till Edinburgh, se <a href="#flyg">Flyg</a>.</li>
+          <li>Hyrbil från Edinburgh Airport till Troon, ca 1 h 20 min.</li>
+          <li>Incheckning på hotellet och kvällen före golfen i Troon.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>20</b><small>Torsdag</small></div>
+      <div>
+        <h3>36 hål: Royal Troon och Prestwick St Nicholas <span class="tag">Bekräftat ledigt</span></h3>
+        <ul>
+          <li><strong>09:00–10:30</strong> start på Royal Troon, Portland-banan. Två starttider.</li>
+          <li>Lunch och en kort bilresa söderut till Prestwick, ca 10 min.</li>
+          <li><strong>Efter 12:30</strong> start på Prestwick St Nicholas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>21</b><small>Fredag</small></div>
+      <div>
+        <h3>Irvine (Bogside)</h3>
+        <ul>
+          <li><strong>09:30–11:30</strong> start. Besökare tas emot vardagar 09:30–11:30 och 12:30–15:30.</li>
+          <li>Ca 15 min från Troon. Eftermiddag och kväll fria.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>22</b><small>Lördag</small></div>
+      <div>
+        <h3>Sovmorgon, sedan West Kilbride</h3>
+        <ul>
+          <li>Förmiddagen är fri: sovmorgon, promenad längs stranden eller en tur till Largs.</li>
+          <li><strong>Efter 15:00</strong> start på West Kilbride. Ca 35–40 min norrut, utsikt mot Arran.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>23</b><small>Söndag</small></div>
+      <div>
+        <h3>Hemresa <span class="tag opt">Valfri rond</span></h3>
+        <ul>
+          <li>Valfritt: <strong>09:00</strong> start på Lochgreen i Troon, klart runt 13:00.</li>
+          <li>Bil till Edinburgh Airport och flyg hem. Med söndagsrond går kvällsavgångarna.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="banor">
+    <h2>Banorna</h2>
+    <p class="lede">Ren links längs Firth of Clyde, alla inom 40 minuter från Troon.</p>
+    <div class="cards">
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/View_from_edge_of_Royal_Troon_golf_course.jpg/1280px-View_from_edge_of_Royal_Troon_golf_course.jpg" alt="Royal Troon golfbana sedd från kanten mot havet">
+          <figcaption>Foto: dave souza, <a href="https://commons.wikimedia.org/wiki/File:View_from_edge_of_Royal_Troon_golf_course.jpg">CC BY-SA 4.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Torsdag förmiddag</div>
+          <h3>Royal Troon · Portland</h3>
+          <p>Royal Troon är en av banorna i The Opens rotation. Vi spelar systerbanan Portland, en fullvärdig links på samma mark med samma havsvind, för en bråkdel av Old Course-priset.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>140 £ (2027, bekräftat)</dd>
+            <dt>Tider</dt><dd>09:00–10:30, två tider lediga 20/5</dd>
+            <dt>Krav</dt><dd>Handicap högst 20</dd>
+            <dt>Webb</dt><dd><a href="https://www.royaltroon.co.uk/">royaltroon.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Prestwick_St_Nicholas_Golf_Course_-_geograph.org.uk_-_5239098.jpg/1280px-Prestwick_St_Nicholas_Golf_Course_-_geograph.org.uk_-_5239098.jpg" alt="Prestwick St Nicholas golfbana vid havet">
+          <figcaption>Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Prestwick_St_Nicholas_Golf_Course_-_geograph.org.uk_-_5239098.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Torsdag eftermiddag</div>
+          <h3>Prestwick St Nicholas</h3>
+          <p>En klubb från 1851 med en kompakt, lurig links direkt vid stranden och utsikt över Clyde mot Arran. Små greener, mycket ljung och tätt mellan hålen.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>120 £ (2027, bekräftat)</dd>
+            <dt>Tider</dt><dd>Efter 12:30, ledigt 20/5</dd>
+            <dt>Krav</dt><dd>Inga handicapkrav</dd>
+            <dt>Webb</dt><dd><a href="https://www.prestwickstnicholas.com/">prestwickstnicholas.com</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/4/43/Irvine_Golf_Club_-_geograph.org.uk_-_6028479.jpg" alt="Irvine Golf Club, Bogside">
+          <figcaption>Foto: Thomas Nugent, <a href="https://commons.wikimedia.org/wiki/File:Irvine_Golf_Club_-_geograph.org.uk_-_6028479.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Fredag</div>
+          <h3>Irvine (Bogside)</h3>
+          <p>En klassisk James Braid-links på andra sidan Irvinefloden och regelbundet med bland Skottlands topp 100. Fast, böljande linksmark utan gimmickar, och klart billigare än grannarna Western Gailes och Dundonald.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>125 £ (maj–sep 2026; 2027 ej publicerat)</dd>
+            <dt>Tider</dt><dd>Vardagar 09:30–11:30, 12:30–15:30</dd>
+            <dt>Webb</dt><dd><a href="https://www.theirvinegolfclub.co.uk/visitors-information/">theirvinegolfclub.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/The_West_Kilbride_Golf_Course%2C_North_Ayrshire.jpg/1280px-The_West_Kilbride_Golf_Course%2C_North_Ayrshire.jpg" alt="West Kilbride golfbana med havet i bakgrunden">
+          <figcaption>Foto: Rosser1954, <a href="https://commons.wikimedia.org/wiki/File:The_West_Kilbride_Golf_Course,_North_Ayrshire.jpg">CC BY-SA 4.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Lördag eftermiddag</div>
+          <h3>West Kilbride</h3>
+          <p>En mästerskapslinks längs Firth of Clyde med out of bounds i spel på tolv hål och panoramautsikt mot Arran. Helgpriset efter 15:00 är resans fynd.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>80 £ (helg efter 15:00, 2027)</dd>
+            <dt>Tider</dt><dd>Lördag efter 15:00</dd>
+            <dt>Webb</dt><dd><a href="https://www.westkilbridegolfclub.com/golf/visitors-green-fees/">westkilbridegolfclub.com</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Lochgreen_Golf_Course%2C_Troon_-_geograph.org.uk_-_3829950.jpg/1280px-Lochgreen_Golf_Course%2C_Troon_-_geograph.org.uk_-_3829950.jpg" alt="Lochgreen golfbana i Troon">
+          <figcaption>Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Lochgreen_Golf_Course,_Troon_-_geograph.org.uk_-_3829950.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Söndag, valfri</div>
+          <h3>Lochgreen, Troon</h3>
+          <p>Den bästa av Troons tre kommunala linksbanor, granne med Royal Troon. Avslappnad sista rond innan bilen går till Edinburgh.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>ca 30–37 £ (ej verifierat)</dd>
+            <dt>Tider</dt><dd>09:00, bokas via Troon Links</dd>
+            <dt>Webb</dt><dd><a href="https://www.troonlinksgolf.com/">troonlinksgolf.com</a></dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="boende">
+    <h2>Boende</h2>
+    <p class="lede">Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
+    <div class="cards">
+
+      <article class="card pick">
+        <figure>
+          <span class="pickflag">Förslaget</span>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/South_Beach_Hotel%2C_South_Beach%2C_Troon_-_geograph.org.uk_-_4079434.jpg/1280px-South_Beach_Hotel%2C_South_Beach%2C_Troon_-_geograph.org.uk_-_4079434.jpg" alt="South Beach Hotel i Troon">
+          <figcaption>Foto: Leslie Barrie, <a href="https://commons.wikimedia.org/wiki/File:South_Beach_Hotel,_South_Beach,_Troon_-_geograph.org.uk_-_4079434.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Troon, vid stranden</div>
+          <h3>South Beach Hotel</h3>
+          <p>Familjeägt hotell med 32 rum vid South Beach. Gångavstånd till pubarna i Troon och stationen, bar med whiskyhylla, restaurang och golfpaket.</p>
+          <dl>
+            <dt>Pris</dt><dd>ca 160 £ per rum och natt (maj 2026, ej verifierat)</dd>
+            <dt>Läge</dt><dd>Ca 5 min promenad till centrum</dd>
+            <dt>Webb</dt><dd><a href="https://www.southbeach.co.uk/">southbeach.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Piersland_House_hotel_-_geograph.org.uk_-_6023695.jpg" alt="Piersland House Hotel i Troon">
+          <figcaption>Foto: Thomas Nugent, <a href="https://commons.wikimedia.org/wiki/File:Piersland_House_hotel_-_geograph.org.uk_-_6023695.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Troon, vid Royal Troon</div>
+          <h3>Piersland House</h3>
+          <p>Tidigare hem åt familjen bakom Johnnie Walker. Korsvirkeshus med trädgård, lounge bar och rum i huvudbyggnaden och flyglarna. Mer miljö, men ca 1,5 km till pubarna.</p>
+          <dl>
+            <dt>Pris</dt><dd>ca 130–150 £ per rum och natt (okt 2026, ej verifierat)</dd>
+            <dt>Läge</dt><dd>Granne med Royal Troon</dd>
+            <dt>Webb</dt><dd><a href="https://piersland.co.uk/">piersland.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure>
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Parkstone_Hotel%2C_Prestwick%2C_South_Ayrshire_-_geograph.org.uk_-_6282918.jpg/1280px-Parkstone_Hotel%2C_Prestwick%2C_South_Ayrshire_-_geograph.org.uk_-_6282918.jpg" alt="Parkstone Hotel i Prestwick">
+          <figcaption>Foto: Mark S, <a href="https://commons.wikimedia.org/wiki/File:Parkstone_Hotel,_Prestwick,_South_Ayrshire_-_geograph.org.uk_-_6282918.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Prestwick, havsfronten</div>
+          <h3>Parkstone Hotel</h3>
+          <p>Hotell på strandpromenaden i Prestwick, granne med St Nicholas och ett par minuters promenad till Prestwick Golf Club, där The Open startade 1860.</p>
+          <dl>
+            <dt>Pris</dt><dd>Inget tillförlitligt majpris hittat</dd>
+            <dt>Läge</dt><dd>Ca 10 min bil till Troon</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="flyg">
+    <h2>Flyg</h2>
+    <p class="lede">Direktflyg till Edinburgh. Glasgow och Prestwick saknar direktflyg från Arlanda och Kastrup. Tiderna kommer från sommartidtabellen 2026 och är inte kontrollerade på flygbolagens egna sidor. Tidtabellen för 2027 är inte släppt.</p>
+    <div class="flights">
+      <div class="flight">
+        <h3>Dit · onsdag 19 maj</h3>
+        <ul>
+          <li><span class="t">07:15 → 08:35</span> Arlanda → Edinburgh<br><span class="c">SAS SK2545</span></li>
+          <li><span class="t">13:35 → 14:30</span> Kastrup → Edinburgh<br><span class="c">Norwegian D8 3502</span></li>
+          <li><span class="t">17:25 → 18:25</span> Kastrup → Edinburgh<br><span class="c">SAS SK2513</span></li>
+        </ul>
+      </div>
+      <div class="flight">
+        <h3>Hem · söndag 23 maj</h3>
+        <ul>
+          <li><span class="t">20:30 → 23:40</span> Edinburgh → Arlanda<br><span class="c">Norwegian D8 4464 · går med söndagsrond</span></li>
+          <li><span class="t">11:00 → 14:10</span> Edinburgh → Arlanda<br><span class="c">SAS SK2546 · utan söndagsrond</span></li>
+          <li><span class="t">19:10 → 21:55</span> Edinburgh → Kastrup<br><span class="c">SAS SK2514 · går med söndagsrond</span></li>
+          <li><span class="t">15:10 → 17:55</span> Edinburgh → Kastrup<br><span class="c">Norwegian D8 3503 · snävt med söndagsrond</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Bilresa Edinburgh Airport → Troon: ca 110 km, ca 1 h 20 min. Två hyrbilar räcker för sex personer med golfbagar.</p>
+  </section>
+
+  <section id="kostnad">
+    <h2>Kostnad per person</h2>
+    <p class="lede">Golf och boende, exklusive flyg, hyrbil, mat och dryck.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Post</th><th>Underlag</th><th class="num">£</th></tr></thead>
+        <tbody>
+          <tr><td>Royal Troon Portland</td><td>2027, bekräftat</td><td class="num">140</td></tr>
+          <tr><td>Prestwick St Nicholas</td><td>2027, bekräftat</td><td class="num">120</td></tr>
+          <tr><td>Irvine (Bogside)</td><td>2026</td><td class="num">125</td></tr>
+          <tr><td>West Kilbride, lördag efter 15:00</td><td>2027</td><td class="num">80</td></tr>
+          <tr><td>Hotell, 4 nätter i delat dubbelrum</td><td>ca 160 £ per rum och natt, ej verifierat</td><td class="num">ca 320</td></tr>
+          <tr class="sum"><td>Summa</td><td></td><td class="num">ca 785</td></tr>
+          <tr><td>Lochgreen söndag, valfritt</td><td>ej verifierat</td><td class="num">+ 30–37</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Greenfee för fyra ronder: 465 £ per person. Det ligger i snitt under 120 £ per rond, trots Royal Troon.</p>
+  </section>
+
+  <section id="att-gora">
+    <h2>Det som återstår</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Vad</th><th>Läge</th></tr></thead>
+        <tbody>
+          <tr><td>Royal Troon, två tider torsdag</td><td>Bokningen för 2027 är öppen. 50 % handpenning inom 30 dagar, resten 90 dagar före spel. Alla måste ha handicap 20 eller lägre.</td></tr>
+          <tr><td>Prestwick St Nicholas, torsdag efter 12:30</td><td>Klubben kan boka direkt. Bokningen för 2027 öppnar i november.</td></tr>
+          <tr><td>Irvine och West Kilbride</td><td>Inte förfrågat än.</td></tr>
+          <tr><td>Hotell</td><td>Begär gruppris för tre rum i fyra nätter.</td></tr>
+          <tr><td>Flyg och hyrbil</td><td>Var och en bokar sitt flyg när 2027 års tidtabell släpps.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">St Andrews sparas till 2028. The Open spelas på Old Course i juli 2027, och den som vill ha garanterade grupptider bokar ungefär två år i förväg.</p>
+  </section>
+
+  <footer>
+    <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 1 november 2026.</p>
+    <p>Bilder från Wikimedia Commons under Creative Commons-licens. Fotografer och licenser anges vid varje bild.</p>
+  </footer>
+
+</main>
+</body>
+</html>
