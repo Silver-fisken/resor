@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
 :root {
   --bg: #f6f3ec;
@@ -117,6 +118,55 @@ tr.sum td { font-weight: 600; background: var(--accent-soft); }
 footer { margin: 48px 0 0; padding: 24px 0 48px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
 footer p { margin: 0 0 8px; }
 
+
+/* Karta */
+.mapbox { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+#map { height: 440px; background: var(--line); }
+#map .leaflet-tile-pane { filter: saturate(.55) contrast(.95) brightness(1.03); }
+#map.dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) saturate(.4) brightness(.85) contrast(.9); }
+.days { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); }
+.days button {
+  font: inherit; color: var(--ink); background: none; border: 0; border-left: 1px solid var(--line);
+  padding: 10px 8px 12px; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.days button:first-child { border-left: 0; }
+.days button:hover { background: var(--accent-soft); }
+.days button[aria-pressed="true"] { background: var(--accent-soft); box-shadow: inset 0 3px 0 var(--accent); }
+.days .d { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.days .n { font-family: Fraunces, Georgia, serif; font-size: 22px; line-height: 1; color: var(--accent); }
+.days .w { font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.days .k { font-size: 12px; color: var(--muted); }
+.maplegend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin: 10px 2px 0; }
+.maplegend span { display: inline-flex; align-items: center; gap: 6px; }
+.lg-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--accent); }
+.lg-sq { width: 13px; height: 13px; border-radius: 3px; background: var(--warn); }
+.lg-sq.alt { background: var(--surface); border: 2px solid var(--warn); }
+.pin {
+  display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent); color: var(--surface); font: 600 12px/1 Inter, sans-serif;
+  border: 2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,.35); transition: transform .2s;
+}
+.pin.opt { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+.pin.on { transform: scale(1.25); }
+.hpin {
+  display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px;
+  background: var(--warn); color: var(--surface); border: 2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.hpin.alt { background: var(--surface); color: var(--warn); border-color: var(--warn); width: 22px; height: 22px; }
+.hpin svg { width: 60%; height: 60%; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--surface); color: var(--ink); }
+.leaflet-popup-content { font: 14px/1.45 Inter, sans-serif; margin: 10px 14px; }
+.leaflet-popup-content b { font-family: Fraunces, Georgia, serif; font-size: 16px; }
+.leaflet-container a.leaflet-popup-close-button { color: var(--muted); }
+.leaflet-control-attribution { font-size: 10px; }
+.leaflet-tooltip.lbl { background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,.2); font: 600 12px Inter, sans-serif; padding: 2px 7px; }
+.leaflet-tooltip.lbl::before { display: none; }
+@media (max-width: 560px) {
+  #map { height: 360px; }
+  .days .w, .days .k { display: none; }
+  .days button { align-items: center; text-align: center; padding: 8px 2px 10px; }
+}
+
 @media (max-width: 560px) {
   .day { grid-template-columns: 1fr; gap: 4px; }
   .day .date b { display: inline; margin-right: 8px; }
@@ -145,6 +195,26 @@ footer p { margin: 0 0 8px; }
   <div class="status">
     <strong>Förslag, inget är bokat.</strong> Det här är Dolores förslag så som det ser ut 1 november 2026. Prestwick St Nicholas har bekräftat lediga tider och pris för 2027. Övriga priser är från klubbarnas och hotellens sidor eller jämförelsesajter och anges med årtal. Arrandagen är struken efter omröstningen.
   </div>
+
+  <section id="karta">
+    <h2>Var vi är</h2>
+    <p class="lede">Alla banor ligger inom 40 minuter från hotellet i Troon. Tryck på en dag för att se var vi spelar.</p>
+    <div class="mapbox">
+      <div id="map" role="region" aria-label="Karta över banor och boende i Ayrshire"></div>
+      <div class="days" id="days">
+        <button type="button" data-day="all" aria-pressed="true"><span class="d">Alla</span><span class="n">19–23</span><span class="w">Hela resan</span><span class="k">4 nätter i Troon</span></button>
+        <button type="button" data-day="thu" aria-pressed="false"><span class="d">Tor</span><span class="n">20</span><span class="w">St Nicholas</span><span class="k">efter 12:30 · 10 min</span></button>
+        <button type="button" data-day="fri" aria-pressed="false"><span class="d">Fre</span><span class="n">21</span><span class="w">Irvine</span><span class="k">12:30–15:30 · 15 min</span></button>
+        <button type="button" data-day="sat" aria-pressed="false"><span class="d">Lör</span><span class="n">22</span><span class="w">West Kilbride</span><span class="k">efter 15:00 · 35–40 min</span></button>
+        <button type="button" data-day="sun" aria-pressed="false"><span class="d">Sön</span><span class="n">23</span><span class="w">Lochgreen</span><span class="k">valfri 09:00 · 5 min</span></button>
+      </div>
+    </div>
+    <div class="maplegend">
+      <span><i class="lg-dot"></i>Golfbana, märkt med dag</span>
+      <span><i class="lg-sq"></i>Förslaget: South Beach Hotel</span>
+      <span><i class="lg-sq alt"></i>Alternativt boende</span>
+    </div>
+  </section>
 
   <section id="dag-for-dag">
     <h2>Dag för dag</h2>
@@ -406,9 +476,77 @@ footer p { margin: 0 0 8px; }
 
   <footer>
     <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 1 november 2026 (torsdag och fredag ändrade till eftermiddagsgolf).</p>
-    <p>Bilder från Wikimedia Commons under Creative Commons-licens. Fotografer och licenser anges vid varje bild.</p>
+    <p>Bilder från Wikimedia Commons under Creative Commons-licens. Fotografer och licenser anges vid varje bild. Karta: OpenStreetMap.</p>
   </footer>
 
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function () {
+  if (!window.L) return;
+  var dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches &&
+             document.documentElement.getAttribute('data-theme') !== 'light';
+  if (dark) document.getElementById('map').classList.add('dark');
+  var map = L.map('map', { scrollWheelZoom: false, zoomControl: true });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var house = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>';
+  var base = [55.53876, -4.65531];
+
+  var courses = [
+    { id: 'thu', ll: [55.48734, -4.62428], label: 'Tor 20', name: 'Prestwick St Nicholas', info: 'Torsdag 20 maj, start efter 12:30<br>120 £ · bekräftat ledigt' },
+    { id: 'fri', ll: [55.62578, -4.68993], label: 'Fre 21', name: 'Irvine (Bogside)', info: 'Fredag 21 maj, start 12:30–15:30<br>125 £ (2026)' },
+    { id: 'sat', ll: [55.69236, -4.87744], label: 'Lör 22', name: 'West Kilbride', info: 'Lördag 22 maj, start efter 15:00<br>80 £ (2027)' },
+    { id: 'sun', ll: [55.54313, -4.64810], label: 'Sön 23', name: 'Lochgreen, Troon', info: 'Söndag 23 maj, valfri rond 09:00<br>ca 30–37 £', opt: true }
+  ];
+  var hotels = [
+    { ll: base, name: 'South Beach Hotel', info: 'Förslaget · 4 nätter 19–23 maj', pick: true },
+    { ll: [55.53402, -4.64689], name: 'Piersland House', info: 'Alternativ · granne med Royal Troon' },
+    { ll: [55.4985, -4.6195], name: 'Parkstone Hotel', info: 'Alternativ · strandpromenaden i Prestwick (läget ungefärligt)' }
+  ];
+
+  var markers = {}, lines = {};
+  hotels.forEach(function (h) {
+    var size = h.pick ? 28 : 22;
+    L.marker(h.ll, {
+      icon: L.divIcon({ className: '', html: '<div class="hpin' + (h.pick ? '' : ' alt') + '">' + house + '</div>', iconSize: [size, size], iconAnchor: [size / 2, size / 2] }),
+      zIndexOffset: h.pick ? 1500 : 0, title: h.name
+    }).addTo(map).bindPopup('<b>' + h.name + '</b><br>' + h.info);
+  });
+  courses.forEach(function (c) {
+    var m = L.marker(c.ll, {
+      icon: L.divIcon({ className: '', html: '<div class="pin' + (c.opt ? ' opt' : '') + '">' + c.label.split(' ')[1] + '</div>', iconSize: [34, 34], iconAnchor: [17, 17] }),
+      zIndexOffset: 1000, title: c.name
+    }).addTo(map).bindPopup('<b>' + c.name + '</b><br>' + c.info);
+    if (window.innerWidth > 560) m.bindTooltip(c.label + ' · ' + c.name.split(' (')[0], { permanent: true, direction: 'right', offset: [18, 0], className: 'lbl' });
+    markers[c.id] = m;
+    lines[c.id] = L.polyline([base, c.ll], { color: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#1f5c43', weight: 2.5, opacity: .45, dashArray: '6 7' }).addTo(map);
+  });
+
+  var all = L.latLngBounds(courses.map(function (c) { return c.ll; }).concat(hotels.map(function (h) { return h.ll; })));
+  map.fitBounds(all, { padding: [30, 30] });
+
+  function select(day) {
+    document.querySelectorAll('#days button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.day === day)); });
+    courses.forEach(function (c) {
+      var on = day === 'all' || day === c.id;
+      var el = markers[c.id].getElement();
+      if (el) { el.firstChild.classList.toggle('on', day === c.id); el.style.opacity = on ? 1 : .35; }
+      var tt = markers[c.id].getTooltip(); if (tt && tt.getElement()) tt.getElement().style.opacity = on ? 1 : .35;
+      lines[c.id].setStyle({ opacity: day === c.id ? .95 : (day === 'all' ? .45 : .12), weight: day === c.id ? 3.5 : 2.5 });
+    });
+    if (day === 'all') { map.closePopup(); map.flyToBounds(all, { padding: [30, 30], duration: .8 }); return; }
+    var c = courses.filter(function (x) { return x.id === day; })[0];
+    map.flyToBounds(L.latLngBounds([base, c.ll]), { padding: [70, 70], maxZoom: 13, duration: .8 });
+    map.once('moveend', function () { markers[day].openPopup(); });
+  }
+  document.querySelectorAll('#days button').forEach(function (b) {
+    b.addEventListener('click', function () { select(b.dataset.day); });
+  });
+})();
+</script>
 </body>
 </html>
