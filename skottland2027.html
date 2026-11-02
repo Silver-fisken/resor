@@ -194,12 +194,20 @@ footer p { margin: 0 0 8px; }
 }
 .stop.on { transform: scale(1.2); }
 .lg-stop { width: 13px; height: 13px; border-radius: 50%; background: var(--ink); }
+.pkg { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 8px 0 12px; }
+.pkg p { margin: 8px 0 0; }
+.pkg ul { margin: 8px 0 0; padding-left: 18px; }
+.pkg-head { display: flex; align-items: center; gap: 10px; }
+.pkg-head h3 { font-size: 20px; }
+.pkg-tag { background: var(--accent); color: var(--surface); font: 600 13px/1 Inter, sans-serif; padding: 5px 9px; border-radius: 6px; }
+.day + .pkg { margin-top: 24px; }
 ul.timeline { list-style: none; padding: 0; }
 ul.timeline li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; padding: 3px 0; }
 ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); }
 @media (max-width: 560px) {
   .alttabs button { padding: 6px 10px; flex: 1 1 0; min-width: 0; }
   .alttabs .t2 { font-size: 13px; line-height: 1.3; }
+  .alttabs .t1 { font-size: 10.5px; letter-spacing: .04em; white-space: nowrap; }
   .alttabs .t3 { display: none; }
 }
 </style>
@@ -228,12 +236,14 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
   <nav class="alttabs" role="tablist" aria-label="Alternativ">
     <button type="button" role="tab" data-alt="1" aria-selected="true"><span class="t1">Alternativ 1</span><span class="t2">Tre ronder på fastlandet</span><span class="t3">Golf &amp; hotell ca 645 £</span></button>
     <button type="button" role="tab" data-alt="2" aria-selected="false"><span class="t1">Alternativ 2</span><span class="t2">Arrandag på fredag</span><span class="t3">Golf, Arran &amp; hotell ca 615–620 £</span></button>
+    <button type="button" role="tab" data-alt="3" aria-selected="false"><span class="t1">Alternativ 3</span><span class="t2">Joakims paket</span><span class="t3">Golfpaket ca 775 £ · helpaket 945–1 225 £</span></button>
   </nav>
 
   <section id="karta">
     <h2>Var vi är</h2>
     <p class="lede" data-alt="1">Alla banor ligger inom 40 minuter från hotellet i Troon. Tryck på en dag för att se var vi spelar.</p>
     <p class="lede" data-alt="2" hidden>Banorna på fastlandet ligger inom 40 minuter från Troon. Till Arran åker vi tåg och färja. Tryck på fredag för att se dagens rutt.</p>
+    <p class="lede" data-alt="3" hidden>Golfpaketet med Barassie, Irvine och Dundonald, alla inom 15 minuter från Troon. DeiRa i Prestwick är hotellet i bokningsfirmans paket.</p>
     <div class="mapbox">
       <div id="map" role="region" aria-label="Karta över banor och boende i Ayrshire"></div>
       <div class="days" id="days"></div>
@@ -242,6 +252,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
       <span><i class="lg-dot"></i>Golfbana, märkt med dag</span>
       <span data-alt="2" hidden><i class="lg-stop"></i>Hållplats på Arrandagen</span>
       <span><i class="lg-sq"></i>Förslaget: South Beach Hotel</span>
+      <span data-alt="3" hidden><i class="lg-sq"></i>Paket 3b: DeiRa, Prestwick</span>
       <span><i class="lg-sq alt"></i>Alternativt boende</span>
     </div>
   </section>
@@ -380,11 +391,89 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     </div>
   </section>
 
+
+  <!-- ===== Alternativ 3: dag för dag ===== -->
+  <section id="dag-for-dag-3" data-alt="3" hidden>
+    <h2>Dag för dag</h2>
+    <p class="lede">Joakim har hittat två färdiga paket. Inget av dem har bekräftade speltider. Fördelningen på dagar nedan är ett förslag som följer gruppens önskan om eftermiddagsgolf på torsdagen.</p>
+
+    <div class="pkg">
+      <div class="pkg-head"><span class="pkg-tag">3a</span><h3>Golfpaketet: Dundonald, Barassie och Irvine</h3></div>
+      <p>Tre ronder för 455 £ per person. Boende ingår inte, så här bor vi på South Beach i Troon som i alternativ 1. Joakim mailar paketets bokare när vi vet vilka tider som är möjliga. Paketet har troligen fler lediga tider än webbokningen för gäster.</p>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>19</b><small>Onsdag</small></div>
+      <div>
+        <h3>Ankomst och kvällen före golfen</h3>
+        <ul>
+          <li>Flyg till Edinburgh, se <a href="#flyg">Flyg</a>.</li>
+          <li>Hyrbil från Edinburgh Airport till Troon, ca 1 h 20 min.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>20</b><small>Torsdag</small></div>
+      <div>
+        <h3>Kilmarnock (Barassie) <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul>
+          <li>Förmiddagen är fri. Start på eftermiddagen.</li>
+          <li>Ca 5 min norr om Troon.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>21</b><small>Fredag</small></div>
+      <div>
+        <h3>Irvine (Bogside) <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul>
+          <li>Besökare tas emot vardagar 09:30–11:30 och 12:30–15:30.</li>
+          <li>Ca 15 min från Troon.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>22</b><small>Lördag</small></div>
+      <div>
+        <h3>Dundonald Links <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul>
+          <li>Resans finaste rond, sparad till sist.</li>
+          <li>Ca 10 min från Troon.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>23</b><small>Söndag</small></div>
+      <div>
+        <h3>Hemresa <span class="tag opt">Valfri rond</span></h3>
+        <ul>
+          <li>Valfritt: <strong>09:00</strong> start på Lochgreen i Troon.</li>
+          <li>Bil till Edinburgh Airport och flyg hem.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pkg">
+      <div class="pkg-head"><span class="pkg-tag">3b</span><h3>Bokningsfirmans paket: allt ingår, bas i Prestwick</h3></div>
+      <p>En svensk bokningsfirma i England har offererat tre ronder, fyra nätter på DeiRa Hotel i Prestwick och transporter.</p>
+      <ul>
+        <li><strong>945 £ per person</strong> med tre enklare banor (greenfee runt 400 £ totalt).</li>
+        <li><strong>1 225 £ per person</strong> med tre finare banor.</li>
+      </ul>
+      <p>Banorna är inte namngivna i offerten, och transporterna behöver justeras efter våra flygtider. Firman verkar ha tillgång till fler starttider än webben. Att sätta ihop samma sak själva blir troligen billigare, eftersom firman också ska tjäna pengar.</p>
+    </div>
+  </section>
+
   <!-- ===== Banor (kort visas per alternativ via data-alts) ===== -->
   <section id="banor">
     <h2>Banorna</h2>
     <p class="lede" data-alt="1">Ren links längs Firth of Clyde, alla inom 40 minuter från Troon.</p>
     <p class="lede" data-alt="2" hidden>Links längs Firth of Clyde, plus Shiskine och Lagg på Arran.</p>
+    <p class="lede" data-alt="3" hidden>Golfpaketets tre banor (3a) och den valfria söndagsronden. Bokningsfirmans banor (3b) är inte namngivna.</p>
     <div class="cards">
 
       <article class="card" data-alts="1 2">
@@ -405,7 +494,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card" data-alts="1">
+      <article class="card" data-alts="1 3">
         <figure>
           <img loading="lazy" src="img/skottland2027/irvine.jpg" alt="Irvine Golf Club, Bogside">
           <figcaption>Foto: Thomas Nugent, <a href="https://commons.wikimedia.org/wiki/File:Irvine_Golf_Club_-_geograph.org.uk_-_6028479.jpg">CC BY-SA 2.0</a></figcaption>
@@ -456,6 +545,40 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
+      <article class="card" data-alts="3" hidden>
+        <figure>
+          <img loading="lazy" src="img/skottland2027/barassie.jpg" alt="Kilmarnock (Barassie) Golf Club i Troon">
+          <figcaption>Foto: Mrs W J Sutherland, <a href="https://commons.wikimedia.org/wiki/File:Kilmarnock_(Barassie)_Golf_Club,_Troon_-_geograph.org.uk_-_7666072.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Torsdag eftermiddag · paket 3a</div>
+          <h3>Kilmarnock (Barassie)</h3>
+          <p>Hedlands- och linksbana direkt norr om Troon, kvalbana till The Open när den spelas på Royal Troon. Smala fairways genom ljung och gorse, och bra golf för pengarna i paketet.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>175 £ ordinarie (2027), ingår i paketet</dd>
+            <dt>Läge</dt><dd>Ca 5 min från Troon</dd>
+            <dt>Webb</dt><dd><a href="https://www.kbgc.co.uk/">kbgc.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card" data-alts="3" hidden>
+        <figure>
+          <img loading="lazy" src="img/skottland2027/dundonald.jpg" alt="Dundonald Links golfbana">
+          <figcaption>Foto: Gordon Brown, <a href="https://commons.wikimedia.org/wiki/File:Dundonald_Links_Golf_Club_-_geograph.org.uk_-_7047127.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Lördag · paket 3a</div>
+          <h3>Dundonald Links</h3>
+          <p>Modern, äkta links bland sanddynerna vid Gailes, byggd 1999 av Kyle Phillips. Banan har haft Scottish Women's Open och kvalspel till The Open. Den dyraste banan i området, och det är den som gör paketet prisvärt.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>260 £ ordinarie fre–sön (2026), ingår i paketet</dd>
+            <dt>Läge</dt><dd>Ca 10 min från Troon</dd>
+            <dt>Webb</dt><dd><a href="https://dundonaldlinks.com/">dundonaldlinks.com</a></dd>
+          </dl>
+        </div>
+      </article>
+
       <article class="card" data-alts="1 2">
         <figure>
           <img loading="lazy" src="img/skottland2027/west-kilbride.jpg" alt="West Kilbride golfbana med havet i bakgrunden">
@@ -473,7 +596,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card" data-alts="1 2">
+      <article class="card" data-alts="1 2 3">
         <figure>
           <img loading="lazy" src="img/skottland2027/lochgreen.jpg" alt="Lochgreen golfbana i Troon">
           <figcaption>Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Lochgreen_Golf_Course,_Troon_-_geograph.org.uk_-_3829950.jpg">CC BY-SA 2.0</a></figcaption>
@@ -495,7 +618,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
 
   <section id="boende">
     <h2>Boende</h2>
-    <p class="lede">Samma i båda alternativen. Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
+    <p class="lede">Samma i alternativ 1, 2 och 3a. Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
     <div class="cards">
 
       <article class="card pick">
@@ -549,12 +672,30 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
+      <article class="card" data-alts="3" hidden>
+        <figure>
+          <span class="pickflag">Paket 3b</span>
+          <img loading="lazy" src="img/skottland2027/prestwick-main-street.jpg" alt="Main Street i Prestwick">
+          <figcaption>Bilden visar Main Street i Prestwick, där hotellet ligger. Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Main_Street,_Prestwick_-_geograph.org.uk_-_5238998.jpg">CC BY-SA 2.0</a></figcaption>
+        </figure>
+        <div class="body">
+          <div class="when">Prestwick, Main Street</div>
+          <h3>DeiRa Hotel &amp; Apartments</h3>
+          <p>Nytt hotell med lägenheter, öppnat i juli 2024 inför The Open på Royal Troon. Samma ägare som Taj Bar &amp; Kitchen i Prestwick. Bar och restaurang i huset, frukost ingår. Nära stationen, gångavstånd till Prestwick Golf Club och ca 10 min promenad till stranden.</p>
+          <dl>
+            <dt>Pris</dt><dd>Ingår i bokningsfirmans paket</dd>
+            <dt>Adress</dt><dd>143 Main Street, Prestwick</dd>
+            <dt>Webb</dt><dd><a href="https://www.deirahotel.com/">deirahotel.com</a></dd>
+          </dl>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <section id="flyg">
     <h2>Flyg</h2>
-    <p class="lede">Samma i båda alternativen. Direktflyg till Edinburgh. Glasgow och Prestwick saknar direktflyg från Arlanda och Kastrup. Tiderna kommer från sommartidtabellen 2026 och är inte kontrollerade på flygbolagens egna sidor. Tidtabellen för 2027 är inte släppt.</p>
+    <p class="lede">Samma i alla alternativ. Direktflyg till Edinburgh. Glasgow och Prestwick saknar direktflyg från Arlanda och Kastrup. Tiderna kommer från sommartidtabellen 2026 och är inte kontrollerade på flygbolagens egna sidor. Tidtabellen för 2027 är inte släppt.</p>
     <div class="flights">
       <div class="flight">
         <h3>Dit · onsdag 19 maj</h3>
@@ -658,8 +799,44 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     <p class="note">Golfbagar på bussen på Arran behöver stämmas av med Stagecoach. Alternativet är hyrklubbor på Shiskine. St Andrews sparas till 2028.</p>
   </section>
 
+
+  <section id="kostnad-3" data-alt="3" hidden>
+    <h2>Kostnad per person</h2>
+    <p class="lede">Exklusive flyg, mat och dryck. Paket 3b inkluderar transporter, 3a gör det inte.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Post</th><th>Underlag</th><th class="num">£</th></tr></thead>
+        <tbody>
+          <tr><td colspan="3"><strong>3a · Golfpaketet</strong></td></tr>
+          <tr><td>Dundonald, Barassie och Irvine</td><td>Paketpris enligt Joakim</td><td class="num">455</td></tr>
+          <tr><td>Hotell, 4 nätter i delat dubbelrum</td><td>South Beach, ca 160 £ per rum och natt, ej verifierat</td><td class="num">ca 320</td></tr>
+          <tr class="sum"><td>Summa 3a</td><td>plus hyrbil</td><td class="num">ca 775</td></tr>
+          <tr><td colspan="3"><strong>3b · Bokningsfirmans paket</strong></td></tr>
+          <tr><td>Tre enklare banor, DeiRa och transporter</td><td>Offert till Joakim</td><td class="num">945</td></tr>
+          <tr><td>Tre finare banor, DeiRa och transporter</td><td>Offert till Joakim</td><td class="num">1 225</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Ordinarie greenfee för golfpaketets tre banor är ca 560 £ (Dundonald 260, Barassie 175, Irvine 125), så paketet sparar ca 105 £ per person. Som jämförelse kostar alternativ 1 ca 645 £ för golf och hotell.</p>
+  </section>
+
+  <section id="att-gora-3" data-alt="3" hidden>
+    <h2>Det som återstår</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Vad</th><th>Läge</th></tr></thead>
+        <tbody>
+          <tr><td>3a: speltider</td><td>Joakim mailar paketets bokare när vi vet vilka tider som är möjliga. Säljaren är inte angiven här.</td></tr>
+          <tr><td>3b: banor och transporter</td><td>Be firman namnge banorna i båda prisnivåerna och anpassa transporterna efter flygtiderna.</td></tr>
+          <tr><td>Hotell för 3a</td><td>Begär gruppris för tre rum i fyra nätter.</td></tr>
+          <tr><td>Flyg</td><td>Flygtiderna avgör om torsdag och söndag går att spela. Var och en bokar när 2027 års tidtabell släpps.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <footer>
-    <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 1 november 2026 (alternativ 2 med Arrandag tillagt).</p>
+    <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 1 november 2026 (alternativ 3 med Joakims paket tillagt).</p>
     <p>Bilder från Wikimedia Commons under Creative Commons-licens. Fotografer och licenser anges vid varje bild. Karta: OpenStreetMap.</p>
   </footer>
 
@@ -674,6 +851,8 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     irvine:     [55.62578, -4.68993],
     westKil:    [55.69236, -4.87744],
     lochgreen:  [55.54313, -4.64810],
+    barassie:   [55.56952, -4.64895],
+    dundonald:  [55.58516, -4.65283],
     troonStn:   [55.54280, -4.65520],
     ardrossan:  [55.63951, -4.82025],
     brodick:    [55.57717, -5.13584],
@@ -703,7 +882,18 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
           { ll: P.ardrossan, stop: 'A', name: 'Ardrossan Harbour', info: 'Tåg från Troon 08:46 · färja 09:45<br>Tillbaka 20:15, tåg 20:48' }
         ],
         route: [P.hotel, P.troonStn, P.ardrossan, P.brodick, P.shiskine, P.lagg, P.brodick, P.ardrossan] },
-      sat, sun]
+      sat, sun],
+    '3': [
+      { id: 'thu', d: 'Tor', n: '20', w: 'Barassie', k: 'eftermiddag · 5 min',
+        pins: [{ ll: P.barassie, num: '20', name: 'Barassie (Kilmarnock GC)', info: 'Torsdag 20 maj, eftermiddag<br>Ingår i golfpaketet 3a · tid ej bekräftad' }] },
+      { id: 'fri', d: 'Fre', n: '21', w: 'Irvine', k: '15 min',
+        pins: [{ ll: P.irvine, num: '21', name: 'Irvine (Bogside)', info: 'Fredag 21 maj<br>Ingår i golfpaketet 3a · tid ej bekräftad' }] },
+      { id: 'sat', d: 'Lör', n: '22', w: 'Dundonald', k: '10 min',
+        pins: [{ ll: P.dundonald, num: '22', name: 'Dundonald Links', info: 'Lördag 22 maj<br>Ingår i golfpaketet 3a · tid ej bekräftad' }] },
+      sun]
+  };
+  var ALT_HOTELS = {
+    '3': [{ ll: [55.49817, -4.61145], name: 'DeiRa Hotel &amp; Apartments', info: 'Paket 3b · 143 Main Street, Prestwick (läget ungefärligt)' }]
   };
 
   var hotels = [
@@ -725,7 +915,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     if (window.L && map) drawAlt(alt);
   }
 
-  var map = null, layer = null, bounds = null, dayLayers = {};
+  var map = null, layer = null, bounds = null, dayLayers = {}, house = '';
   if (window.L) {
     var dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches &&
                document.documentElement.getAttribute('data-theme') !== 'light';
@@ -735,7 +925,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
       maxZoom: 18,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
-    var house = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>';
+    house = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>';
     hotels.forEach(function (h) {
       var size = h.pick ? 28 : 22;
       L.marker(h.ll, {
@@ -751,6 +941,13 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     var days = ALTS[alt];
     layer.clearLayers(); dayLayers = {};
     var pts = hotels.map(function (h) { return h.ll; });
+    (ALT_HOTELS[alt] || []).forEach(function (h) {
+      layer.addLayer(L.marker(h.ll, {
+        icon: L.divIcon({ className: '', html: '<div class="hpin">' + house + '</div>', iconSize: [28, 28], iconAnchor: [14, 14] }),
+        zIndexOffset: 1400, title: h.name
+      }).bindPopup('<b>' + h.name + '</b><br>' + h.info));
+      pts.push(h.ll);
+    });
     days.forEach(function (day) {
       var dl = { markers: [], line: null, pts: [P.hotel] };
       day.pins.forEach(function (p) {
