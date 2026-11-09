@@ -208,7 +208,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
   .alttabs button { padding: 6px 10px; flex: 1 1 0; min-width: 0; }
   .alttabs .t2 { font-size: 13px; line-height: 1.3; }
   .alttabs .t1 { font-size: 10.5px; letter-spacing: .04em; white-space: nowrap; }
-  .alttabs .t3 { display: none; }
+  .alttabs .t3, .alttabs .long { display: none; }
 }
 </style>
 </head>
@@ -218,11 +218,11 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
   <div class="wrap">
     <div class="kicker">MRS Golf · Resplan</div>
     <h1>Skottland 2027</h1>
-    <p>Fyra dagar på Ayrshirekusten med bas i Troon. Två upplägg att välja mellan: tre ronder på fastlandet, eller en dag på Arran i stället för fredagens rond.</p>
+    <p>Fyra dagar på Ayrshirekusten. Fyra upplägg att jämföra: tre ronder från Troon, en Arrandag, Joakims paket och Stefans program med hyrbil och fyra ronder.</p>
     <div class="facts">
-      <span>19–23 maj 2027</span>
+      <span>19/20–23 maj 2027</span>
       <span>6 spelare</span>
-      <span>4 nätter i Troon</span>
+      <span>Bas i Troon eller Prestwick</span>
     </div>
   </div>
 </header>
@@ -230,13 +230,14 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
 <main class="wrap">
 
   <div class="status">
-    <strong>Förslag, inget är bokat.</strong> Det här är Dolores förslag så som det ser ut 1 november 2026. Prestwick St Nicholas har bekräftat lediga tider och pris för 2027. Övriga priser är från klubbarnas, operatörernas och hotellens sidor eller jämförelsesajter och anges med årtal.
+    <strong>Förslag, inget är bokat.</strong> Läget 9 november 2026. Nytt: alternativ 4, Stefans program med hyrbil, och uppdaterade uppgifter om bokningsfirmans paket (3b). SAS-flyget börjar fyllas, så flyget bör bokas snart. Prestwick St Nicholas har bekräftat lediga tider och pris för 2027. Övriga priser är från klubbarnas, operatörernas och hotellens sidor, jämförelsesajter eller gruppens egna kalkyler och anges med källa.
   </div>
 
   <nav class="alttabs" role="tablist" aria-label="Alternativ">
-    <button type="button" role="tab" data-alt="1" aria-selected="true"><span class="t1">Alternativ 1</span><span class="t2">Tre ronder på fastlandet</span><span class="t3">Golf &amp; hotell ca 645 £</span></button>
-    <button type="button" role="tab" data-alt="2" aria-selected="false"><span class="t1">Alternativ 2</span><span class="t2">Arrandag på fredag</span><span class="t3">Golf, Arran &amp; hotell ca 615–620 £</span></button>
-    <button type="button" role="tab" data-alt="3" aria-selected="false"><span class="t1">Alternativ 3</span><span class="t2">Joakims paket</span><span class="t3">Golfpaket ca 775 £ · helpaket 945–1 225 £</span></button>
+    <button type="button" role="tab" data-alt="1" aria-selected="true"><span class="t1">Alt<span class="long">ernativ</span> 1</span><span class="t2">Tre ronder på fastlandet</span><span class="t3">Golf &amp; hotell ca 645 £</span></button>
+    <button type="button" role="tab" data-alt="2" aria-selected="false"><span class="t1">Alt<span class="long">ernativ</span> 2</span><span class="t2">Arrandag på fredag</span><span class="t3">Golf, Arran &amp; hotell ca 615–620 £</span></button>
+    <button type="button" role="tab" data-alt="3" aria-selected="false"><span class="t1">Alt<span class="long">ernativ</span> 3</span><span class="t2">Joakims paket</span><span class="t3">Golfpaket ca 775 £ · helpaket 945–1 225 £</span></button>
+    <button type="button" role="tab" data-alt="4" aria-selected="false"><span class="t1">Alt<span class="long">ernativ</span> 4</span><span class="t2">Stefans program, hyrbil</span><span class="t3">Golf, hotell &amp; bil ca 10 555 kr</span></button>
   </nav>
 
   <section id="karta">
@@ -244,6 +245,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     <p class="lede" data-alt="1">Alla banor ligger inom 40 minuter från hotellet i Troon. Tryck på en dag för att se var vi spelar.</p>
     <p class="lede" data-alt="2" hidden>Banorna på fastlandet ligger inom 40 minuter från Troon. Till Arran åker vi tåg och färja. Tryck på fredag för att se dagens rutt.</p>
     <p class="lede" data-alt="3" hidden>Golfpaketet med Barassie, Irvine och Dundonald, alla inom 15 minuter från Troon. DeiRa i Prestwick är hotellet i bokningsfirmans paket.</p>
+    <p class="lede" data-alt="4" hidden>Bas på DeiRa i Prestwick. Torsdagens rond spelas söder om Glasgow på vägen från Edinburgh, söndagens vid Edinburgh på vägen hem. Tryck på en dag för att se rutten.</p>
     <div class="mapbox">
       <div id="map" role="region" aria-label="Karta över banor och boende i Ayrshire"></div>
       <div class="days" id="days"></div>
@@ -251,8 +253,10 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     <div class="maplegend">
       <span><i class="lg-dot"></i>Golfbana, märkt med dag</span>
       <span data-alt="2" hidden><i class="lg-stop"></i>Hållplats på Arrandagen</span>
-      <span><i class="lg-sq"></i>Förslaget: South Beach Hotel</span>
+      <span data-alt="4" hidden><i class="lg-stop"></i>Edinburgh Airport</span>
+      <span data-alts="1 2 3"><i class="lg-sq"></i>Förslaget: South Beach Hotel</span>
       <span data-alt="3" hidden><i class="lg-sq"></i>Paket 3b: DeiRa, Prestwick</span>
+      <span data-alt="4" hidden><i class="lg-sq"></i>Alternativ 4: DeiRa, Prestwick</span>
       <span><i class="lg-sq alt"></i>Alternativt boende</span>
     </div>
   </section>
@@ -459,12 +463,74 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
 
     <div class="pkg">
       <div class="pkg-head"><span class="pkg-tag">3b</span><h3>Bokningsfirmans paket: allt ingår, bas i Prestwick</h3></div>
-      <p>En svensk bokningsfirma i England har offererat tre ronder, fyra nätter på DeiRa Hotel i Prestwick och transporter.</p>
+      <p>En svensk bokningsfirma i England har offererat 19–23 maj: tre ronder, fyra nätter på DeiRa Hotel i Prestwick och transporter, så att alla åker samlat hela tiden.</p>
       <ul>
-        <li><strong>945 £ per person</strong> med tre enklare banor (greenfee runt 400 £ totalt).</li>
+        <li><strong>945 £ per person</strong> (ca 13 419 kr) med tre enklare banor.</li>
         <li><strong>1 225 £ per person</strong> med tre finare banor.</li>
       </ul>
-      <p>Banorna är inte namngivna i offerten, och transporterna behöver justeras efter våra flygtider. Firman verkar ha tillgång till fler starttider än webben. Att sätta ihop samma sak själva blir troligen billigare, eftersom firman också ska tjäna pengar.</p>
+      <p>Enligt Joakim (9 nov) ingår transfer till och från flygplatsen i priset. Banorna är inte namngivna i offerten. Firman verkar ha tillgång till fler starttider än webben. Ingen behöver köra i vänstertrafik, och alla kan ta en öl efter ronden.</p>
+    </div>
+  </section>
+
+  <!-- ===== Alternativ 4: dag för dag ===== -->
+  <section id="dag-for-dag-4" data-alt="4" hidden>
+    <h2>Dag för dag</h2>
+    <p class="lede">Stefans program (Excel, 9 nov). Alla flyger torsdag morgon, två hyrbilar med tre i varje, tre nätter på DeiRa i Prestwick och fyra ronder. Den som vill kan åka 19 maj med egen hyrbil och möta upp på torsdagens bana, men får då betala en extra natt. Inga tider är bokade.</p>
+
+    <div class="day">
+      <div class="date"><b>20</b><small>Torsdag</small></div>
+      <div>
+        <h3>Bonnyton, söder om Glasgow <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul class="timeline">
+          <li><span>08:10</span>SAS Arlanda → Edinburgh, framme 09:30</li>
+          <li><span>10:00</span>Hämta två hyrbilar, kör till Bonnyton Golf Club i Eaglesham (ca 1 h 20 min)</li>
+          <li><span>11:50</span>Lunch och uppvärmning</li>
+          <li><span>12:50</span>Två starttider, 18 hål</li>
+          <li><span>18:00</span>Kör till DeiRa i Prestwick (ca 40 min), incheckning</li>
+          <li><span>19:40</span>Bar och middag</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>21</b><small>Fredag</small></div>
+      <div>
+        <h3>Prestwick St Nicholas <span class="tag opt">Fredag fullbokad enligt klubben</span></h3>
+        <ul class="timeline">
+          <li><span>10:00</span>Egen tid i Prestwick</li>
+          <li><span>11:15</span>Promenad till klubben, lunch och uppvärmning</li>
+          <li><span>12:30</span>Två starttider, 18 hål</li>
+          <li><span>17:10</span>Öl på klubben, promenad hem</li>
+          <li><span>19:30</span>Bar och middag</li>
+        </ul>
+        <p class="note">Klubben svarade Dolores 26 oktober att fredag och lördag är fullbokade för gäster. Lediga tider fanns torsdag 20 maj efter 12:30 och söndag 23 maj efter 14:00. St Nicholas och Bonnyton kan behöva byta dag.</p>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>22</b><small>Lördag</small></div>
+      <div>
+        <h3>West Kilbride <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul class="timeline">
+          <li><span>09:30</span>Bil till West Kilbride (ca 40 min)</li>
+          <li><span>11:00</span>Två starttider, 18 hål</li>
+          <li><span>16:10</span>Bil tillbaka till Prestwick</li>
+          <li><span>18:30</span>Bar och middag</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="date"><b>23</b><small>Söndag</small></div>
+      <div>
+        <h3>Dalmahoy, på vägen hem <span class="tag opt">Tid ej bekräftad</span></h3>
+        <ul class="timeline">
+          <li><span>09:00</span>Utcheckning, bil mot Edinburgh (ca 1 h 30 min)</li>
+          <li><span>11:30</span>Två starttider på Dalmahoy, 18 hål</li>
+          <li><span>16:40</span>Tanka och lämna bilarna på Edinburgh Airport</li>
+          <li><span>20:30</span>Norwegian Edinburgh → Arlanda, hemma 23:40</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -474,9 +540,22 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     <p class="lede" data-alt="1">Ren links längs Firth of Clyde, alla inom 40 minuter från Troon.</p>
     <p class="lede" data-alt="2" hidden>Links längs Firth of Clyde, plus Shiskine och Lagg på Arran.</p>
     <p class="lede" data-alt="3" hidden>Golfpaketets tre banor (3a) och den valfria söndagsronden. Bokningsfirmans banor (3b) är inte namngivna.</p>
+    <p class="lede" data-alt="4" hidden>Fyra ronder: en parkbana vid Glasgow, två links längs Clyde och en parkbana vid Edinburgh. Greenfee är Stefans uppskattningar, omräknade med 14,2 kr per pund.</p>
     <div class="cards">
 
-      <article class="card" data-alts="1 2">
+      <article class="card" data-alts="4" hidden>
+        <div class="body">
+          <div class="when">Torsdag eftermiddag · alternativ 4</div>
+          <h3>Bonnyton, Eaglesham</h3>
+          <p>Hedbana på höjderna söder om Glasgow, längs vägen från Edinburgh till Ayrshire. Ingen links, men en bra första rond utan omväg.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>ca 60 £ / 852 kr (Stefans uppskattning; 25 £ i november, troligen mer än dubbelt i maj)</dd>
+            <dt>Läge</dt><dd>Ca 1 h 20 min från Edinburgh Airport, ca 40 min till Prestwick</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="card" data-alts="1 2 4">
         <figure>
           <img loading="lazy" src="img/skottland2027/st-nicholas.jpg" alt="Prestwick St Nicholas golfbana vid havet">
           <figcaption>Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Prestwick_St_Nicholas_Golf_Course_-_geograph.org.uk_-_5239098.jpg">CC BY-SA 2.0</a></figcaption>
@@ -486,8 +565,8 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
           <h3>Prestwick St Nicholas</h3>
           <p>En klubb från 1851 med en kompakt, lurig links direkt vid stranden och utsikt över Clyde mot Arran. Små greener, mycket ljung och tätt mellan hålen.</p>
           <dl>
-            <dt>Greenfee</dt><dd>120 £ (2027, bekräftat)</dd>
-            <dt>Tider</dt><dd>Efter 12:30, ledigt 20/5</dd>
+            <dt>Greenfee</dt><dd>120 £ (2027, bekräftat). Stefan räknar 110 £ / 1 562 kr</dd>
+            <dt>Tider</dt><dd>Efter 12:30, ledigt 20/5. Fredag 21/5 fullbokad</dd>
             <dt>Krav</dt><dd>Inga handicapkrav</dd>
             <dt>Webb</dt><dd><a href="https://www.prestwickstnicholas.com/">prestwickstnicholas.com</a></dd>
           </dl>
@@ -579,7 +658,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card" data-alts="1 2">
+      <article class="card" data-alts="1 2 4">
         <figure>
           <img loading="lazy" src="img/skottland2027/west-kilbride.jpg" alt="West Kilbride golfbana med havet i bakgrunden">
           <figcaption>Foto: Rosser1954, <a href="https://commons.wikimedia.org/wiki/File:The_West_Kilbride_Golf_Course,_North_Ayrshire.jpg">CC BY-SA 4.0</a></figcaption>
@@ -589,8 +668,8 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
           <h3>West Kilbride</h3>
           <p>En mästerskapslinks längs Firth of Clyde med out of bounds i spel på tolv hål och panoramautsikt mot Arran. Helgpriset efter 15:00 är resans fynd.</p>
           <dl>
-            <dt>Greenfee</dt><dd>80 £ (helg efter 15:00, 2027)</dd>
-            <dt>Tider</dt><dd>Lördag efter 15:00</dd>
+            <dt>Greenfee</dt><dd>80 £ (helg efter 15:00, 2027). Alternativ 4 startar 11:00: Stefan räknar 125 £ / 1 775 kr</dd>
+            <dt>Tider</dt><dd>Lördag efter 15:00 (alt. 1–2) eller 11:00 (alt. 4)</dd>
             <dt>Webb</dt><dd><a href="https://www.westkilbridegolfclub.com/golf/visitors-green-fees/">westkilbridegolfclub.com</a></dd>
           </dl>
         </div>
@@ -613,15 +692,31 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
+      <article class="card" data-alts="4" hidden>
+        <div class="body">
+          <div class="when">Söndag · alternativ 4</div>
+          <h3>Dalmahoy, Edinburgh</h3>
+          <p>Hotell och country club med två parkbanor väster om Edinburgh, ca 20 minuter från flygplatsen. Sista ronden innan bilarna lämnas.</p>
+          <dl>
+            <dt>Greenfee</dt><dd>ca 50 £ / 710 kr (Stefans uppskattning, ej verifierat)</dd>
+            <dt>Tider</dt><dd>Start ca 11:30</dd>
+            <dt>Webb</dt><dd><a href="https://www.dalmahoyhotelandcountryclub.co.uk/">dalmahoyhotelandcountryclub.co.uk</a></dd>
+          </dl>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <section id="boende">
     <h2>Boende</h2>
-    <p class="lede">Samma i alternativ 1, 2 och 3a. Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
+    <p class="lede" data-alt="1">Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
+    <p class="lede" data-alt="2" hidden>Fyra nätter, 19–23 maj, tre dubbelrum med två sängar. Priserna är riktvärden. Majpriser för 2027 måste begäras hos hotellen.</p>
+    <p class="lede" data-alt="3" hidden>3a bor i Troon som alternativ 1, 3b på DeiRa i Prestwick. Priserna är riktvärden.</p>
+    <p class="lede" data-alt="4" hidden>Tre nätter, 20–23 maj, på DeiRa i Prestwick. Den som åker 19 maj betalar en natt till.</p>
     <div class="cards">
 
-      <article class="card pick">
+      <article class="card pick" data-alts="1 2 3">
         <figure>
           <span class="pickflag">Förslaget</span>
           <img loading="lazy" src="img/skottland2027/south-beach.jpg" alt="South Beach Hotel i Troon">
@@ -639,7 +734,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-alts="1 2 3">
         <figure>
           <img loading="lazy" src="img/skottland2027/piersland.jpg" alt="Piersland House Hotel i Troon">
           <figcaption>Foto: Thomas Nugent, <a href="https://commons.wikimedia.org/wiki/File:Piersland_House_hotel_-_geograph.org.uk_-_6023695.jpg">CC BY-SA 2.0</a></figcaption>
@@ -656,7 +751,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" data-alts="1 2 3">
         <figure>
           <img loading="lazy" src="img/skottland2027/parkstone.jpg" alt="Parkstone Hotel i Prestwick">
           <figcaption>Foto: Mark S, <a href="https://commons.wikimedia.org/wiki/File:Parkstone_Hotel,_Prestwick,_South_Ayrshire_-_geograph.org.uk_-_6282918.jpg">CC BY-SA 2.0</a></figcaption>
@@ -672,9 +767,9 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </div>
       </article>
 
-      <article class="card" data-alts="3" hidden>
+      <article class="card" data-alts="3 4" hidden>
         <figure>
-          <span class="pickflag">Paket 3b</span>
+          <span class="pickflag">3b och 4</span>
           <img loading="lazy" src="img/skottland2027/prestwick-main-street.jpg" alt="Main Street i Prestwick">
           <figcaption>Bilden visar Main Street i Prestwick, där hotellet ligger. Foto: Billy McCrorie, <a href="https://commons.wikimedia.org/wiki/File:Main_Street,_Prestwick_-_geograph.org.uk_-_5238998.jpg">CC BY-SA 2.0</a></figcaption>
         </figure>
@@ -683,7 +778,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
           <h3>DeiRa Hotel &amp; Apartments</h3>
           <p>Nytt hotell med lägenheter, öppnat i juli 2024 inför The Open på Royal Troon. Samma ägare som Taj Bar &amp; Kitchen i Prestwick. Bar och restaurang i huset, frukost ingår. Nära stationen, gångavstånd till Prestwick Golf Club och ca 10 min promenad till stranden.</p>
           <dl>
-            <dt>Pris</dt><dd>Ingår i bokningsfirmans paket</dd>
+            <dt>Pris</dt><dd>Ingår i paket 3b. Alternativ 4: 3 723 kr per person för 3 nätter (Stefans kalkyl, 2027 års pris)</dd>
             <dt>Adress</dt><dd>143 Main Street, Prestwick</dd>
             <dt>Webb</dt><dd><a href="https://www.deirahotel.com/">deirahotel.com</a></dd>
           </dl>
@@ -695,8 +790,14 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
 
   <section id="flyg">
     <h2>Flyg</h2>
-    <p class="lede">Samma i alla alternativ. Direktflyg till Edinburgh. Glasgow och Prestwick saknar direktflyg från Arlanda och Kastrup. Tiderna kommer från sommartidtabellen 2026 och är inte kontrollerade på flygbolagens egna sidor. Tidtabellen för 2027 är inte släppt.</p>
+    <p class="lede">Direktflyg till Edinburgh. Glasgow och Prestwick saknar direktflyg från Arlanda och Kastrup. Onsdagstiderna kommer från sommartidtabellen 2026. Torsdagsflyget och priset har Peter tagit fram 6 november. Stefan säger 9 november att SAS-flyget börjar bli uppbokat. Magnus har inget morgonflyg från Kastrup och åker dagen före oavsett, och Joakim vill flyga in redan runt tisdag.</p>
     <div class="flights">
+      <div class="flight">
+        <h3>Dit · torsdag 20 maj</h3>
+        <ul>
+          <li><span class="t">08:10 → 09:30</span> Arlanda → Edinburgh<br><span class="c">SAS · 3 179 kr tur och retur med Norwegian hem (Peter) · alternativ 4</span></li>
+        </ul>
+      </div>
       <div class="flight">
         <h3>Dit · onsdag 19 maj</h3>
         <ul>
@@ -817,7 +918,46 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         </tbody>
       </table>
     </div>
-    <p class="note">Ordinarie greenfee för golfpaketets tre banor är ca 560 £ (Dundonald 260, Barassie 175, Irvine 125), så paketet sparar ca 105 £ per person. Som jämförelse kostar alternativ 1 ca 645 £ för golf och hotell.</p>
+    <p class="note">Ordinarie greenfee för golfpaketets tre banor är ca 560 £ (Dundonald 260, Barassie 175, Irvine 125), så paketet sparar ca 105 £ per person. Som jämförelse kostar alternativ 1 ca 645 £ för golf och hotell. Paket 3b är ca 13 419 kr med Stefans kurs 14,2 kr per pund och kan jämföras med alternativ 4: 10 555 kr för fyra ronder, tre nätter och hyrbil.</p>
+  </section>
+
+  <section id="kostnad-4" data-alt="4" hidden>
+    <h2>Kostnad per person</h2>
+    <p class="lede">Stefans kalkyl i kronor, 14,2 kr per pund, två bilar med tre personer i varje. Exklusive mat och dryck.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Post</th><th>Underlag</th><th class="num">kr</th></tr></thead>
+        <tbody>
+          <tr><td>Hyrbil 20–23 maj inkl. bensin</td><td>Rentalcars, två bilar, 1 000 kr bensin per bil</td><td class="num">1 933</td></tr>
+          <tr><td>Bonnyton, torsdag</td><td>uppskattat, ca 60 £</td><td class="num">852</td></tr>
+          <tr><td>Prestwick St Nicholas, fredag</td><td>110 £ (bekräftat 2027-pris är 120 £)</td><td class="num">1 562</td></tr>
+          <tr><td>West Kilbride, lördag 11:00</td><td>ca 125 £</td><td class="num">1 775</td></tr>
+          <tr><td>Dalmahoy, söndag</td><td>uppskattat, ca 50 £</td><td class="num">710</td></tr>
+          <tr><td>DeiRa, 3 nätter i delat rum</td><td>2027 års pris</td><td class="num">3 723</td></tr>
+          <tr class="sum"><td>Summa golf, hotell och bil</td><td></td><td class="num">10 555</td></tr>
+          <tr><td>Flyg tur och retur plus golfbag</td><td>3 179 kr biljett (Peter), ca 1 000 kr för bagen</td><td class="num">+ 4 172</td></tr>
+          <tr class="sum"><td>Summa inklusive flyg</td><td></td><td class="num">14 727</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Med klubbens bekräftade pris för St Nicholas (120 £) blir summan ca 140 kr högre. Jämfört med paket 3b (ca 13 419 kr, flyg ej inräknat) ger alternativ 4 en rond till för ca 2 900 kr mindre, men någon måste köra i vänstertrafik. Peter räknar med att samma pengar som hyrbilen räcker till mycket taxi: Edinburgh–Prestwick ca 1 800 kr för vanlig taxi och ca 3 000 kr för minibuss, enkel väg. Stefan påpekar att tre personer med golfbagar kräver minibuss.</p>
+  </section>
+
+  <section id="att-gora-4" data-alt="4" hidden>
+    <h2>Det som återstår</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Vad</th><th>Läge</th></tr></thead>
+        <tbody>
+          <tr><td>Flyg</td><td>Boka snart. SAS torsdag 08:10 börjar fyllas enligt Stefan.</td></tr>
+          <tr><td>Prestwick St Nicholas</td><td>Fredag fullbokad enligt klubben 26 oktober. Byt till torsdag efter 12:30 eller söndag efter 14:00, eller välj en annan fredagsbana.</td></tr>
+          <tr><td>Bonnyton, West Kilbride och Dalmahoy</td><td>Inte förfrågat. Greenfee är uppskattningar.</td></tr>
+          <tr><td>DeiRa, 3 nätter</td><td>Begär gruppris för tre rum, plus en natt för dem som åker 19 maj.</td></tr>
+          <tr><td>Hyrbil eller taxi</td><td>Gruppen avgör: två hyrbilar, eller taxi och minibuss utan egen chaufför.</td></tr>
+          <tr><td>Avstämning</td><td>Stefan föreslår ett samtal: torsdag ca 20:30 eller fredag 08:30–09:30 och kväll. Joakim och Fredrik kan torsdag.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section id="att-gora-3" data-alt="3" hidden>
@@ -827,7 +967,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         <thead><tr><th>Vad</th><th>Läge</th></tr></thead>
         <tbody>
           <tr><td>3a: speltider</td><td>Joakim mailar paketets bokare när vi vet vilka tider som är möjliga. Säljaren är inte angiven här.</td></tr>
-          <tr><td>3b: banor och transporter</td><td>Be firman namnge banorna i båda prisnivåerna och anpassa transporterna efter flygtiderna.</td></tr>
+          <tr><td>3b: banor</td><td>Be firman namnge banorna i båda prisnivåerna. Transfer till och från flygplatsen ingår enligt Joakim.</td></tr>
           <tr><td>Hotell för 3a</td><td>Begär gruppris för tre rum i fyra nätter.</td></tr>
           <tr><td>Flyg</td><td>Flygtiderna avgör om torsdag och söndag går att spela. Var och en bokar när 2027 års tidtabell släpps.</td></tr>
         </tbody>
@@ -836,7 +976,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
   </section>
 
   <footer>
-    <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 1 november 2026 (alternativ 3 med Joakims paket tillagt).</p>
+    <p>Sammanställt av Dolores, travel agent på MRS Golf · senast uppdaterad 9 november 2026 (alternativ 4 med Stefans program tillagt, paket 3b och flyg uppdaterade).</p>
     <p>Bilder från Wikimedia Commons under Creative Commons-licens. Fotografer och licenser anges vid varje bild. Karta: OpenStreetMap.</p>
   </footer>
 
@@ -857,7 +997,11 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     ardrossan:  [55.63951, -4.82025],
     brodick:    [55.57717, -5.13584],
     shiskine:   [55.50697, -5.34630],
-    lagg:       [55.44617, -5.24852]
+    lagg:       [55.44617, -5.24852],
+    deira:      [55.49817, -4.61145],
+    bonnyton:   [55.7440, -4.3050],
+    dalmahoy:   [55.9030, -3.3700],
+    edi:        [55.9500, -3.3725]
   };
 
   var thu = { id: 'thu', d: 'Tor', n: '20', w: 'St Nicholas', k: 'efter 12:30 · 10 min',
@@ -890,10 +1034,28 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
         pins: [{ ll: P.irvine, num: '21', name: 'Irvine (Bogside)', info: 'Fredag 21 maj<br>Ingår i golfpaketet 3a · tid ej bekräftad' }] },
       { id: 'sat', d: 'Lör', n: '22', w: 'Dundonald', k: '10 min',
         pins: [{ ll: P.dundonald, num: '22', name: 'Dundonald Links', info: 'Lördag 22 maj<br>Ingår i golfpaketet 3a · tid ej bekräftad' }] },
-      sun]
+      sun],
+    '4': [
+      { id: 'thu', d: 'Tor', n: '20', w: 'Bonnyton', k: '12:50 · från Edinburgh',
+        pins: [
+          { ll: P.bonnyton, num: '20', name: 'Bonnyton, Eaglesham', info: 'Torsdag 20 maj, start ca 12:50<br>ca 60 £, uppskattat (läget ungefärligt)' },
+          { ll: P.edi, stop: 'E', name: 'Edinburgh Airport', info: 'Landning 09:30 · hyrbilar 10:00' }
+        ],
+        route: [P.edi, P.bonnyton, P.deira] },
+      { id: 'fri', d: 'Fre', n: '21', w: 'St Nicholas', k: '12:30 · promenad',
+        pins: [{ ll: P.stNicholas, num: '21', name: 'Prestwick St Nicholas', info: 'Fredag 21 maj, start 12:30<br>Fredag fullbokad enligt klubben 26 okt' }],
+        route: [P.deira, P.stNicholas] },
+      { id: 'sat', d: 'Lör', n: '22', w: 'West Kilbride', k: '11:00 · 40 min',
+        pins: [{ ll: P.westKil, num: '22', name: 'West Kilbride', info: 'Lördag 22 maj, start 11:00<br>ca 125 £' }],
+        route: [P.deira, P.westKil] },
+      { id: 'sun', d: 'Sön', n: '23', w: 'Dalmahoy', k: '11:30 · mot Edinburgh',
+        pins: [{ ll: P.dalmahoy, num: '23', name: 'Dalmahoy', info: 'Söndag 23 maj, start ca 11:30<br>ca 50 £, uppskattat (läget ungefärligt)' }],
+        route: [P.deira, P.dalmahoy, P.edi] }]
   };
+  var ALT_SUMMARY = { '4': ['20–23', '3 nätter i Prestwick'] };
   var ALT_HOTELS = {
-    '3': [{ ll: [55.49817, -4.61145], name: 'DeiRa Hotel &amp; Apartments', info: 'Paket 3b · 143 Main Street, Prestwick (läget ungefärligt)' }]
+    '3': [{ ll: P.deira, name: 'DeiRa Hotel &amp; Apartments', info: 'Paket 3b · 143 Main Street, Prestwick (läget ungefärligt)' }],
+    '4': [{ ll: P.deira, name: 'DeiRa Hotel &amp; Apartments', info: 'Alternativ 4 · 3 nätter 20–23 maj · 143 Main Street, Prestwick (läget ungefärligt)' }]
   };
 
   var hotels = [
@@ -949,7 +1111,7 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
       pts.push(h.ll);
     });
     days.forEach(function (day) {
-      var dl = { markers: [], line: null, pts: [P.hotel] };
+      var dl = { markers: [], line: null, pts: (day.route || [P.hotel]).slice() };
       day.pins.forEach(function (p) {
         var html, size;
         if (p.stop) { html = '<div class="stop">' + p.stop + '</div>'; size = 24; }
@@ -966,7 +1128,8 @@ ul.timeline li > span { font-variant-numeric: tabular-nums; font-weight: 600; co
     bounds = L.latLngBounds(pts);
     var strip = document.getElementById('days');
     strip.style.gridTemplateColumns = 'repeat(' + (days.length + 1) + ', 1fr)';
-    strip.innerHTML = '<button type="button" data-day="all" aria-pressed="true"><span class="d">Alla</span><span class="n">19–23</span><span class="w">Hela resan</span><span class="k">4 nätter i Troon</span></button>' +
+    var sum = ALT_SUMMARY[alt] || ['19–23', '4 nätter i Troon'];
+    strip.innerHTML = '<button type="button" data-day="all" aria-pressed="true"><span class="d">Alla</span><span class="n">' + sum[0] + '</span><span class="w">Hela resan</span><span class="k">' + sum[1] + '</span></button>' +
       days.map(function (d) {
         return '<button type="button" data-day="' + d.id + '" aria-pressed="false"><span class="d">' + d.d + '</span><span class="n">' + d.n + '</span><span class="w">' + d.w + '</span><span class="k">' + d.k + '</span></button>';
       }).join('');
